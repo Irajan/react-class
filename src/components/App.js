@@ -1,33 +1,19 @@
 import React from "react";
+import List from "./List";
+import Welcome from "./Welcome";
+import SpeedIndicator from "./SpeedIndicator";
+
+// expression ? value1 : value2
 
 class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      count: 0,
-    };
-  }
-
-  handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 });
-  };
-
-  handleDecrement = () => {
-    this.setState({ count: this.state.count - 1 });
-  };
-
   render() {
-    const { count } = this.state;
-
-    console.log(this.props);
-
     return (
-      <div>
-        <h1>Hello {this.props.name}</h1>
-        <button onClick={this.handleIncrement}>+</button> {count}
-        <button onClick={this.handleDecrement}>-</button>
-      </div>
+      <React.Fragment>
+        <Welcome name="World" />
+        <SpeedIndicator />
+        <List list={["Apple", "Banana", "Mango", "Grapes"]} />
+        <button onClick={() => prompt("Enter the name of fruit")}>+</button>
+      </React.Fragment>
     );
   }
 }

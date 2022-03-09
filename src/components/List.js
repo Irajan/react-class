@@ -2,14 +2,17 @@ import React from "react";
 
 class List extends React.Component {
   render() {
-    const { list } = this.props;
+    const { list, onAdd } = this.props;
 
     return (
-      <ul>
-        {list.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
+      <>
+        <ul>
+          {list.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+        <button onClick={onAdd}>+</button>
+      </>
     );
   }
 }

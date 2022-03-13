@@ -1,20 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import { listContext } from "./App";
 
-class List extends React.Component {
-  render() {
-    const { list, onAdd } = this.props;
+function List() {
+  const [list, onAdd] = useContext(listContext);
 
-    return (
-      <>
-        <ul>
-          {list.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
-        <button onClick={onAdd}>+</button>
-      </>
-    );
-  }
+  return (
+    <>
+      <ul>
+        {list.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+      <button onClick={onAdd}>+</button>
+    </>
+  );
 }
 
 export default List;

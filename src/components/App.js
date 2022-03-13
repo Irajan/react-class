@@ -5,6 +5,7 @@ import SpeedIndicator from "./SpeedIndicator";
 import Click from "./Click";
 import Hover from "./Hover";
 import Calculator from "./Calculator";
+import Heading from "./Heading";
 
 // expression ? value1 : value2
 // HP.getPrice(){    }
@@ -36,6 +37,8 @@ import Calculator from "./Calculator";
 
 // console.log(calculatePeaterPansPrice(20));
 
+export const listContext = React.createContext("list");
+
 class App extends React.Component {
   constructor() {
     super();
@@ -62,13 +65,18 @@ class App extends React.Component {
       <React.Fragment>
         <Welcome name="World" />
         <SpeedIndicator />
-        <h1>Number of fruits = {this.state.list.length} </h1>
 
-        <List list={this.state.list} onAdd={this.handleListAdd} />
+        <listContext.Provider value={[this.state.list, this.handleListAdd]}>
+          <Heading />
+          <List />
+        </listContext.Provider>
+
         <Click />
         <Hover />
 
-        <Calculator />
+        <Calculator>
+          <h1>Hello </h1>
+        </Calculator>
       </React.Fragment>
     );
   }

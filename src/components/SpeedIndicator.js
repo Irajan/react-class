@@ -1,4 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import "../actions/speed";
+import { addSpeed, decreaseSpeed } from "../actions/speed";
 
 class MaxSpeedIndicator extends React.Component {
   componentDidMount = () => {
@@ -60,11 +64,11 @@ class SpeedIndicator extends React.Component {
   }
 
   handleIncrement = () => {
-    this.setState({ count: this.state.count + 1 });
+    this.props.increaseSpeed();
   };
 
   handleDecrement = () => {
-    this.setState({ count: this.state.count - 1 });
+    this.props.decreaseSpeed();
   };
 
   speedIndicator = () => {
@@ -107,11 +111,22 @@ class SpeedIndicator extends React.Component {
     return (
       <>
         {this.speedIndicator()}
-        <button onClick={this.handleIncrement}>+</button> {count}
+        <button onClick={this.handleIncrement}>+</button> {this.props.speed}
         <button onClick={this.handleDecrement}>-</button>
       </>
     );
   }
 }
 
-export default SpeedIndicator;
+const mapStateToProps = (state) => ({
+  speed: state.speed,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  increaseSpeed: () => dispatch(addSpeed),
+  decreaseSpeed: () => dispatch(decreaseSpeed),
+});
+
+const spedConnector = connect(mapStateToProps, mapDispatchToProps);
+
+export default spedConnector(SpeedIndicator);
